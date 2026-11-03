@@ -10,24 +10,25 @@ public class Characters
     protected int health, attack, magicAttack;
     
     public Characters(String n, int hp, int att, int mag) {
-    this.name = n;
-    this.health = hp;
-    this.attack = att;
-    this.magicAttack = mag;
+        this.name = n;
+        this.health = hp;
+        this.attack = att;
+        this.magicAttack = mag;
     }
     
     public boolean isAlive() {
-    return health > 0;
+        return health > 0;
     }
     
     public void takeDamage(int damage) {
-    health -= damage;
+        health -= damage;
+
         if (health < 0) {
-        health = 0;
+            health = 0;
         }
     }
     
     public int getHp() {
-    return health;
+        return health;
     }
 }
