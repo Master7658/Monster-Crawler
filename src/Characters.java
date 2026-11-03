@@ -4,8 +4,7 @@
  * @author Tanish Kanga
  * @version 11/2/26
  */
-public class Characters
-{
+public class Characters {
     protected String name;
     protected int health, attack, magicAttack;
     
