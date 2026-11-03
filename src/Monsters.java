@@ -6,7 +6,7 @@ import java.util.*;
  * @author Tanish Kanga
  * @version 11/2/26
  */
-public class Monster extends Characters
+public class Monsters extends Characters
 {
     protected int armor, potion;
     Random randy = new Random();
