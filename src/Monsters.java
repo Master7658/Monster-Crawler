@@ -12,26 +12,26 @@ public class Monster extends Characters
     Random randy = new Random();
     
     public Monster(String name, int hp, int att, int mag, int arm, int pot) {
-    super(name, hp, att, mag);
-    this.armor = arm;
-    this.potion = pot;
+        super(name, hp, att, mag);
+        this.armor = arm;
+        this.potion = pot;
     }
     
     public int attack() {
         int attackDamage = attack + randy.nextInt(3) - 1;
         
         if (this instanceof CaveTroll) {
-        attackDamage = 5 + (randy.nextInt(3) - 1);
+            attackDamage = 5 + (randy.nextInt(3) - 1);
         } else if (this instanceof MountainTroll) {
-        attackDamage = 3 + (randy.nextInt(3) - 1); 
+            attackDamage = 3 + (randy.nextInt(3) - 1); 
         } else if (this instanceof Goblin) {
-        attackDamage = 3 + (randy.nextInt(3) - 1);
+            attackDamage = 3 + (randy.nextInt(3) - 1);
         int goblinMagic = randy.nextInt (3) + 1;
-        attackDamage += goblinMagic;
+            attackDamage += goblinMagic;
         } else if (this instanceof HobGoblin) {
-        attackDamage = 5 + (randy.nextInt(3) - 1);
+            attackDamage = 5 + (randy.nextInt(3) - 1);
         int hobMagic = randy.nextInt(3) + 2;
-        attackDamage += hobMagic;
+            attackDamage += hobMagic;
         }
         
         return attackDamage;
