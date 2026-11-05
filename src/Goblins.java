@@ -10,10 +10,8 @@
  * @author Tanish Kanga
  * @version 11/4/26
  */
-public class Goblins extends Monster
-{
+public class Goblins extends Monster {
     public Goblins() {
-    super("Goblin", (5 + randomSet()), (randomSet() + 3), (randomSet() + 2), 0, 0);
-    
+        super("Goblin", (5 + randomSet()), (randomSet() + 3), (randomSet() + 2), 0, 0);
     }
 }
