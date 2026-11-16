@@ -26,7 +26,7 @@ public class Monster extends Characters {
             attackDamage = 5 + (randy.nextInt(3) - 1);
         } else if (this instanceof MountainTroll) {
             attackDamage = 3 + (randy.nextInt(3) - 1); 
-        } else if (this instanceof Goblin) {
+        } else if (this instanceof Goblins) {
             attackDamage = 3 + (randy.nextInt(3) - 1);
         int goblinMagic = randy.nextInt (3) + 1;
             attackDamage += goblinMagic;
