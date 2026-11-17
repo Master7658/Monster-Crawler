@@ -1,4 +1,3 @@
-
 import java.util.*;
 
 public class Main {
@@ -18,6 +17,7 @@ public class Main {
     static Random randy = new Random();
     static Scanner reader = new Scanner(System.in);
     static Monster[][] monsterObjects = new Monster[size][size];
+    static Player player = new Player();
 
     //10x10 grid
     public static void makeGrid() {
@@ -51,7 +51,7 @@ public class Main {
 
             if (monsterGrid[rows][colums].equals("_") && (rows != 9 && colums != 0) && (rows != 0 && colums != 0)) {
                 int monsterType = randy.nextInt(4);
-                
+
                 //random monster type generator
                 if (monsterType == 0) {
                     monsterGrid[rows][colums] = "C"; //Cave Troll
@@ -72,6 +72,7 @@ public class Main {
         }
     }
 
+    //method to move player using WASD
     public static void movePlayer(String direction) {
         monsterGrid[PlayerX][PlayerY] = "_";
 
@@ -117,6 +118,74 @@ public class Main {
         System.out.println("Moved to (" + PlayerX + ", " + PlayerY + ")");
     }
 
+    //method for battling monsters
+    public static void battle(Player player, Monster monsters) {
+        String monster = "";
+
+        //determines which monster the player is fighting
+        if (monsters instanceof Goblins) {
+            System.out.println("A wild Goblin has appeared");
+            monster = "Goblin";
+
+        } else if (monsters instanceof CaveTroll) {
+            System.out.println("A wild Cave Troll has appeared");
+            monster = "Cave Troll";
+
+        } else if (monsters instanceof MountainTroll) {
+            System.out.println("A wild Mountain Troll has appeared");
+            monster = "Mountain Troll";
+            
+        } else if (monsters instanceof HobGoblin) {
+            System.out.println("A wild Hob Goblin has appeared");
+            monster = "Hob Goblin";
+        }
+
+        //randomly determines who attacks first
+        int playerTurn = randy.nextInt(2);
+
+        //battle continues while both are alive
+        while (player.isAlive() && monsters.isAlive()) {
+            if (playerTurn == 0) {
+                int damage = player.attack();
+                System.out.println("You attack the " + monster + " for " + damage + " damage");
+                monsters.takeDamageMonster(damage);
+            } else {
+                int damage = monsters.attack();
+                System.out.println("The " + monster + " attacked you for " + damage + " damage");
+                player.takeDamage(damage);
+            }
+
+            System.out.println("Your hp: " + player.getHp());
+            System.out.println(monster + " HP: " + monsters.getHp());
+            System.out.println("---------------------------------------------");
+
+            //switches between player and monster turns
+            if (playerTurn == 0) {
+                playerTurn = 1;
+            } else if (playerTurn == 1) {
+                playerTurn = 0;
+            }
+        }
+
+        //checks if player defeated monster
+        if (player.isAlive() == true) {
+            System.out.println("You have defeated the " + monster + "!");
+            player.healing(5);
+
+            //Hob Goblin drops a healing potion
+            if (monsters instanceof HobGoblin) {
+                int potionHealing = monsters.potionHealth();
+                System.out.println("You have found a potion from the Hob Goblin and recovered " + potionHealing + " HP");
+                player.healing(potionHealing);
+            }
+
+        }
+
+        //removes defeated monster from board
+        monsterObjects[PlayerX][PlayerY] = null;
+        monsterGrid[PlayerX][PlayerY] = "P";
+    }
+
     public static void main(String[] args) {
         makeGrid();
         placeMonsters();
@@ -124,9 +193,15 @@ public class Main {
         while (true) {
             monsterGrid[PlayerX][PlayerY] = "P";
             displayGrid();
+
             System.out.println("Enter W, A, S, or D to move");
             String move = reader.nextLine();
             movePlayer(move);
+
+            //checks if player landed on a monster
+            if (monsterObjects[PlayerX][PlayerY] != null) {
+                battle(player, monsterObjects[PlayerX][PlayerY]);
+            }
         }
     }
 }
