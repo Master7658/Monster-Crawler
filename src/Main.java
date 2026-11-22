@@ -130,11 +130,11 @@ public class Main {
         } else if (monsters instanceof CaveTroll) {
             System.out.println("A wild Cave Troll has appeared");
             monster = "Cave Troll";
-
+            
         } else if (monsters instanceof MountainTroll) {
             System.out.println("A wild Mountain Troll has appeared");
             monster = "Mountain Troll";
-            
+
         } else if (monsters instanceof HobGoblin) {
             System.out.println("A wild Hob Goblin has appeared");
             monster = "Hob Goblin";
@@ -179,6 +179,9 @@ public class Main {
                 player.healing(potionHealing);
             }
 
+        } else {
+            System.out.println("You have been defeated by the " + monster + "!");
+            System.exit(0);
         }
 
         //removes defeated monster from board
@@ -201,6 +204,12 @@ public class Main {
             //checks if player landed on a monster
             if (monsterObjects[PlayerX][PlayerY] != null) {
                 battle(player, monsterObjects[PlayerX][PlayerY]);
+            }
+
+            //checks if player reached the finish
+            if (PlayerX == endX && PlayerY == endY) {
+                System.out.println("Congratulations you have won the game!");
+                break;
             }
         }
     }
