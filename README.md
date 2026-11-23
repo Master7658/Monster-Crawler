@@ -1,83 +1,151 @@
 # CS-193-Final-Project-Monster-Crawler
 
-Monster Crawler
+## Monster Crawler
 
-A Java-based game where the player must navigate through a board filled with monsters to reach the finish.
+A Java-based game where the player must navigate through multiple boards filled with monsters to reach the finish.
 
-The Problem:
-I enjoy playing video games and have always wanted to make one, so I am going to be making a game using Java. I want to focus more on the back end and see how I can make the actual game work and add concepts or ideas that I want.
+## The Problem
 
+I enjoy playing video games and have always wanted to make one, so I decided to make a game using Java. I wanted to focus more on the back end and see how I could make the actual game work while implementing different concepts and ideas. This project allows me to learn more about object-oriented programming, inheritance, arrays, and game mechanics while creating a playable game.
 
-How It Works:
+## How It Works
 
-The player starts in the bottom-left corner of a 10×10 board and must reach the top-right corner to win.
+- The player starts in the bottom-left corner of a 10×10 board and must reach the top-right corner.
+- The player can move up, down, left, and right using WASD controls.
+- Monsters are randomly placed throughout the board.
+- There are four types of monsters: Goblin, HobGoblin, Cave Troll, and Mountain Troll.
+- When the player encounters a monster, a turn-based battle begins.
+- The player and monster take turns attacking until one is defeated.
+- The player recovers health after defeating monsters and can receive additional healing from HobGoblin potions.
+- The game contains three levels with increasing difficulty.
+- Level 1 contains 10 monsters, Level 2 contains 15 monsters, and Level 3 contains 20 monsters.
+- When the player reaches the finish, a new board is generated, and the player advances to the next level while keeping their remaining health.
+- The game ends when the player completes all three levels or loses all their health.
 
-The player can move up, down, left, and right using WASD controls.
+## Tech Stack
 
-Monsters are randomly placed throughout the board.
+- **Language:** Java
+- **Libraries:** Java's built-in Scanner and Random classes.
+- **External Tools:** Git and GitHub for version control and Visual Studio Code for development.
+- **Data Storage:** Two-dimensional arrays are used to store the game board and monster objects. Player health, position, and level information are stored in memory while the game is running. No external database is required.
 
-There are four types of monsters: Goblin, HobGoblin, Cave Troll, and Mountain Troll.
+## Setup
 
-When the player encounters a monster, a turn-based battle begins.
+1. Install the Java Development Kit (JDK) on your computer.
+2. Install Git on your computer.
+3. Open a terminal.
+4. Clone the GitHub repository:
 
-The player can recover health after defeating monsters.
+```bash
+git clone https://github.com/Master7658/CS-193-Final-Project-Monster-Crawler.git
+```
 
-The game ends when the player reaches the finish or loses all their health.
+5. Navigate into the project folder:
 
+```bash
+cd CS-193-Final-Project-Monster-Crawler
+```
 
-Tech Stack: 
+6. Compile the Java files:
 
-Language: Java
-
-Libraries: Java's built-in reader, Random, and ArrayList/Array
-
-External Tools: GitHub for version control and a IDE (Vscode) for development
-
-Setup: 
-
-1. Install Java on your computer.
-
-2. Clone the GitHub repository.
-
-3. Open the project in a Java IDE or terminal.
-
-4 Compile the Java files.
-
-5. Run the MainClass file to start the game.
-
-git clone https://github.com/YOUR-USERNAME/Monster-Crawler.git
-cd Monster-Crawler
+```bash
 javac src/*.java
-java -cp src MainClass
+```
 
-Usage: 
+7. Run the Main file to start the game:
 
-After starting the game, the player can choose whether to read the rules.
+```bash
+java -cp src Main
+```
 
-Use the following controls to move around the board:
+## Example Input and Output
 
-W - Move up
+When the game starts, the terminal will display a randomly generated board similar to the following:
 
-A - Move left
+```text
+Level: 1/3
+HP: 50
+_ _ _ _ _ _ _ _ _ E
+_ _ G _ _ _ _ _ _ _
+_ _ _ _ C _ _ _ _ _
+_ H _ _ _ _ _ _ _ _
+_ _ _ _ _ _ M _ _ _
+_ _ _ G _ _ _ _ _ _
+_ _ _ _ _ C _ _ _ _
+_ _ M _ _ _ _ _ _ _
+_ _ _ _ _ _ H _ _ _
+P _ _ G _ _ _ C _ _
 
-S - Move down
+Enter W, A, S, or D to move
+```
 
-D - Move right
+Example input:
 
-The player must avoid or defeat monsters while traveling to the top-right corner of the board.
+```text
+W
+```
 
-The player wins by reaching the finish and loses if their health reaches zero.
+Example output:
 
-Roadmap: 
+```text
+Moved to (8, 0)
+Level: 1/3
+HP: 50
+_ _ _ _ _ _ _ _ _ E
+_ _ G _ _ _ _ _ _ _
+_ _ _ _ C _ _ _ _ _
+_ H _ _ _ _ _ _ _ _
+_ _ _ _ _ _ M _ _ _
+_ _ _ G _ _ _ _ _ _
+_ _ _ _ _ C _ _ _ _
+_ _ M _ _ _ _ _ _ _
+P _ _ _ _ _ H _ _ _
+_ _ _ G _ _ _ C _ _
+```
 
-Add more types of monsters with different abilities.
+The player moves one space up, and the updated board is displayed.
 
-Add multiple levels with increasing difficulty.
+When the player completes the first level, the output will look similar to this:
 
-Add more advanced combat features and items.
+```text
+You have completed level 1!
+---------------------------------------------
+Welcome to level 2!
+Number of monsters: 15
+Your current HP: 45
+---------------------------------------------
+```
 
-Author:
+After completing all three levels, the following message is displayed:
+
+```text
+Congratulations you have won the game!
+```
+
+Monster positions and battle results are randomly generated, so each game may be different.
+
+## Roadmap
+
+### MVP Milestones
+
+- [x] Set up the project and GitHub repository.
+- [x] Create the main Character.java class.
+- [x] Create the Player.java and Monster.java classes that extend Character.
+- [x] Create the four types of monsters: Goblin, HobGoblin, Cave Troll, and Mountain Troll.
+- [x] Create a 10×10 board where the player starts in the bottom-left corner and the finish is in the top-right corner.
+- [x] Add WASD movement with boundaries and randomly place monsters.
+- [x] Create a battle system between the player and monsters.
+- [x] Add win and lose conditions.
+
+### Schedule Features
+
+- [ ] Add more types of monsters with different abilities.
+- [x] Add multiple levels with increasing difficulty.
+- [ ] Add more advanced combat features and items.
+
+## Author
 
 Tanish Kanga
 
-GitHub: https://github.com/Master7658
+GitHub: [https://github.com/Master7658](https://github.com/Master7658)
+Demo: ______
