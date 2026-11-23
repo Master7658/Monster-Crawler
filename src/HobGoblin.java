@@ -4,11 +4,11 @@
  * HP: 7 + randomSet()
  * Attack: randomSet() + 5
  * Magic Attack: randomSet() + 3
- * Potion: randomSet() + 4
+ * Potion: randomSet() + 4 
  * Armor: 0
  *
  * @author Tanish Kanga
- * @version 11/4/26
+ * @version 11/5/26
  */
 public class HobGoblin extends Monster {
     protected int potion;

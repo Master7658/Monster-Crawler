@@ -1,3 +1,4 @@
+
 import java.util.*;
 
 public class Main {
@@ -12,6 +13,11 @@ public class Main {
     //ending position
     static int endX = 0;
     static int endY = 9;
+
+    //level variables
+    static int level = 1;
+    static int maxLevel = 3;
+    static int numberOfMonsters = 10;
 
     //objects
     static Random randy = new Random();
@@ -41,15 +47,17 @@ public class Main {
         }
     }
 
-    //method to place 10 monsters randomly on the board
+    //method to place monsters randomly on the board
     public static void placeMonsters() {
         int monsterCount = 0;
 
-        while (monsterCount < 10) {
+        //Number of monsters depends on the level (1-3) (10, 15, 20)
+        while (monsterCount < numberOfMonsters) {
             int rows = randy.nextInt(size);
             int colums = randy.nextInt(size);
 
-            if (monsterGrid[rows][colums].equals("_") && (rows != 9 && colums != 0) && (rows != 0 && colums != 0)) {
+            //monsters spawn on any empty space
+            if (monsterGrid[rows][colums].equals("_")) {
                 int monsterType = randy.nextInt(4);
 
                 //random monster type generator
@@ -130,7 +138,7 @@ public class Main {
         } else if (monsters instanceof CaveTroll) {
             System.out.println("A wild Cave Troll has appeared");
             monster = "Cave Troll";
-            
+
         } else if (monsters instanceof MountainTroll) {
             System.out.println("A wild Mountain Troll has appeared");
             monster = "Mountain Troll";
@@ -189,12 +197,42 @@ public class Main {
         monsterGrid[PlayerX][PlayerY] = "P";
     }
 
+    //Method to move to the next level
+    public static void nextLevel() {
+        //increase level and number of monsters for next level
+        level++;
+        numberOfMonsters += 5;
+
+        //reset player position
+        PlayerX = 9;
+        PlayerY = 0;
+
+        //reset monster objects
+        monsterObjects = new Monster[size][size];
+
+        //create new board and randomly place monsters
+        makeGrid();
+        placeMonsters();
+
+        //display level information
+        System.out.println("---------------------------------------------");
+        System.out.println("Welcome to level " + level + "!");
+        System.out.println("Number of monsters: " + numberOfMonsters);
+        System.out.println("Your current HP: " + player.getHp());
+        System.out.println("---------------------------------------------");
+    }
+
     public static void main(String[] args) {
         makeGrid();
         placeMonsters();
 
         while (true) {
             monsterGrid[PlayerX][PlayerY] = "P";
+
+            //Display current level and player health
+            System.out.println("Level: " + level + "/" + maxLevel);
+            System.out.println("HP: " + player.getHp());
+
             displayGrid();
 
             System.out.println("Enter W, A, S, or D to move");
@@ -208,8 +246,15 @@ public class Main {
 
             //checks if player reached the finish
             if (PlayerX == endX && PlayerY == endY) {
-                System.out.println("Congratulations you have won the game!");
-                break;
+
+                //UPDATED: checks if player completed final level
+                if (level == maxLevel) {
+                    System.out.println("Congratulations you have won the game!");
+                    break;
+                } else {
+                    System.out.println("You have completed level " + level + "!");
+                    nextLevel();
+                }
             }
         }
     }
