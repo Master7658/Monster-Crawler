@@ -147,5 +147,8 @@ Monster positions and battle results are randomly generated, so each game may be
 
 Tanish Kanga
 
-GitHub: [https://github.com/Master7658](https://github.com/Master7658)
-Demo: ______
+## Github
+[https://github.com/Master7658](https://github.com/Master7658)
+
+## Demo
+[https://app.screencastify.com/watch/vzluTFyncIibj2UQZQl8](https://app.screencastify.com/watch/vzluTFyncIibj2UQZQl8)
